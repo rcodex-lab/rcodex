@@ -1,0 +1,23 @@
+[Unit]
+Description=rCodex Gateway
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=rcodex
+Group=rcodex
+WorkingDirectory=/opt/rcodex/gateway
+EnvironmentFile=/etc/rcodex/gateway.env
+ExecStart=/opt/rcodex/gateway/bin/rcodex-gateway
+Restart=always
+RestartSec=3
+StandardOutput=append:/var/log/rcodex/gateway/gateway.log
+StandardError=append:/var/log/rcodex/gateway/gateway.log
+
+# Gateway 需要访问用户配置的工作区和 CLI 登录态；权限边界主要由运行用户与 GATEWAY_ALLOWED_PATHS 控制。
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
+
