@@ -5,5 +5,8 @@ node_modules/
 *.tmp
 *.tar.gz
 *.zip
+*.apk
+*.ipa
 .env
 .DS_Store
+
