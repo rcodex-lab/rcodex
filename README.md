@@ -1,40 +1,38 @@
 # rCodex Public Deployment
 
-This repository contains public deployment templates, install scripts, and release metadata for rCodex Gateway.
+This repository contains public deployment instructions and release metadata for rCodex.
 
-It does not contain the private rCodex application or Gateway source code. Runtime packages are published separately as GitHub Release assets.
+It does not contain the private rCodex application or Gateway source code. App binaries are published as GitHub Release assets. Gateway is distributed as an npm CLI package.
 
 ## Recommended Deployment Paths
 
-- Linux / Ubuntu: native tarball + systemd
-- macOS: Homebrew native service
-- Windows: native install script / Windows service preview
+- Linux / Ubuntu: `npm install -g @rcodex/gateway`
+- macOS: `npm install -g @rcodex/gateway`
+- Windows: `npm install -g @rcodex/gateway`
 - Docker: reserved for NAS, isolated runtime, enterprise image distribution, and offline container delivery
+
+After installation:
+
+```bash
+rcodex-gateway setup
+rcodex-gateway start
+```
 
 ## Release Assets
 
-A complete Gateway/App release can publish assets like:
+A complete App release can publish assets like:
 
 ```text
 rCodex-<version>.apk
 rCodex-latest.apk
 rCodex-<version>.ipa
 rCodex-latest.ipa
-rcodex-gateway-<version>-linux-x64.tar.gz
-rcodex-gateway-<version>-linux-arm64.tar.gz
-rcodex-gateway-<version>-darwin-arm64.tar.gz
-rcodex-gateway-<version>-darwin-x64.tar.gz
-rcodex-gateway-<version>-windows-x64.zip
 version.json
 checksums.txt
 ```
 
-The release packages should contain only built runtime files, production dependencies, version metadata, launchers, and example configuration. Do not publish TypeScript source, tests, `.env`, `.git`, or internal planning documents.
+Gateway release is handled by npm. The npm package should contain only built runtime files and package metadata. Do not publish TypeScript source, tests, `.env`, `.git`, or internal planning documents.
 
 ## Documentation
 
-- Linux native deployment: `docs/deploy/linux-native-deployment.md`
-- macOS Homebrew deployment: `docs/deploy/homebrew-macos-deployment.md`
-- Windows native deployment: `docs/deploy/windows-native-deployment.md`
-- Native package rules: `deploy/native/README.md`
-
+- Gateway npm deployment: `docs/deploy/npm-gateway-deployment.md`
